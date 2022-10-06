@@ -31,7 +31,7 @@ Function Invoke-HostParser {
     Get-Content -Path $ConfigPath | % {
         switch -Regex ($_) {
             "^Host (?!\*)(?<host>.*)$" {
-                $matches["host"] | Write-Output
+                $matches["host"] -split " " | Write-Output
             }
             "^Include (?<include>.*)$" {
                 Get-ChildItem (Join-Path $RootPath $matches["include"]) `
